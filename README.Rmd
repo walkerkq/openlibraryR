@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE, 
   comment = "#>",
   fig.path = "man/figures/README-", 
-  out.width = "100%"
+  out.width = "100%",
+  message = FALSE
   )
 
 ```
@@ -18,7 +19,7 @@ knitr::opts_chunk$set(
 
 openlibraryR is an R package that provides a simple wrapper for the [Open Library API](https://openlibrary.org/dev/docs/api/books).
 
-[Open Library](https://openlibrary.org) is a digital repository of publication data that aims to make "all of the published works of humankind available to everyone in the world" that is part of archive.org. 
+[Open Library](https://openlibrary.org) is an initiative of the [Internet Archive](https:://archive.org), a 501(c)(3) non-profit, building a digital library of Internet sites and other cultural artifacts in digital form. 
 
 Hex sticker icon by [mangsaabguru](https://www.flaticon.com/authors/mangsaabguru).
 
@@ -38,6 +39,27 @@ You do not need an account or key to access the Open Library API. There is only 
 my_book <- openlibraryR::get_books(book_id = '0486282112')
 
 str(my_book)
+```
+
+Use `tidyr::unnest` to access the various nested data.  
+
+```{r}
+library(dplyr)
+
+my_book %>% 
+  select(authors) %>% 
+  tidyr::unnest(authors, 
+                names_sep = '_')
+
+my_book %>% 
+  select(identifiers) %>% 
+  tidyr::unnest(identifiers)
+
+my_book %>% 
+  select(subject_people) %>% 
+  tidyr::unnest(subject_people, 
+                names_sep = '_')
+
 ```
 
 

@@ -4,10 +4,10 @@
 openlibraryR is an R package that provides a simple wrapper for the
 [Open Library API](https://openlibrary.org/dev/docs/api/books).
 
-[Open Library](https://openlibrary.org) is a digital repository of
-publication data that aims to make “all of the published works of
-humankind available to everyone in the world” that is part of
-archive.org.
+[Open Library](https://openlibrary.org) is an initiative of the
+[Internet Archive](https:://archive.org), a 501(c)(3) non-profit,
+building a digital library of Internet sites and other cultural
+artifacts in digital form.
 
 Hex sticker icon by
 [mangsaabguru](https://www.flaticon.com/authors/mangsaabguru).
@@ -92,4 +92,38 @@ str(my_book)
 #>   .. ..$ small : chr "https://covers.openlibrary.org/b/id/311591-S.jpg"
 #>   .. ..$ medium: chr "https://covers.openlibrary.org/b/id/311591-M.jpg"
 #>   .. ..$ large : chr "https://covers.openlibrary.org/b/id/311591-L.jpg"
+```
+
+Use `tidyr::unnest` to access the various nested data.
+
+``` r
+library(dplyr)
+
+my_book %>% 
+  select(authors) %>% 
+  tidyr::unnest(authors, 
+                names_sep = '_')
+#> # A tibble: 1 x 2
+#>   authors_url                                           authors_name
+#>   <chr>                                                 <chr>       
+#> 1 https://openlibrary.org/authors/OL25342A/Mary_Shelley Mary Shelley
+
+my_book %>% 
+  select(identifiers) %>% 
+  tidyr::unnest(identifiers)
+#> # A tibble: 1 x 6
+#>   goodreads librarything isbn_10    lccn     oclc     openlibrary
+#>   <chr>     <chr>        <chr>      <chr>    <chr>    <chr>      
+#> 1 89476     8294         0486282112 94036624 31166513 OL1110841M
+
+my_book %>% 
+  select(subject_people) %>% 
+  tidyr::unnest(subject_people, 
+                names_sep = '_')
+#> # A tibble: 3 x 2
+#>   subject_people_name             subject_people_url                            
+#>   <chr>                           <chr>                                         
+#> 1 Frankenstein (Fictitious chara~ https://openlibrary.org/subjects/person:frank~
+#> 2 Frankenstein's monster (Fictit~ https://openlibrary.org/subjects/person:frank~
+#> 3 Victor Frankenstein (Fictitiou~ https://openlibrary.org/subjects/person:victo~
 ```
