@@ -1,0 +1,20 @@
+Package: openlibraryR
+Title: A Simple R Wrapper for the Open Library API 
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Kaylin",
+           family = "Pavlik",
+           role = c("aut", "cre"),
+           email = "walkerkq2@gmail.com")
+Description: Provides access to the Open Library API <https://openlibrary.org/dev/docs/api/books>. An R wrapper for pulling data from 'OpenLibrary.org', a digital repository of publication data that aims to make "all of the published works of humankind available to everyone in the world."   
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+	dplyr,
+	httr,
+    jsonlite,
+    purrr,
+    tibble
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
