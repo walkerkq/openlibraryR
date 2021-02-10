@@ -1,6 +1,9 @@
 
 # openlibraryR <img src = "man/figures/openlibraryR_sm.png" width = "180px" align = "right" />
 
+[![Build
+Status](https://travis-ci.com/walkerkq/openlibraryR.svg?branch=main)](https://travis-ci.com/walkerkq/openlibraryR)
+
 openlibraryR is an R package that provides a simple wrapper for the
 [Open Library API](https://openlibrary.org/dev/docs/api/books).
 
