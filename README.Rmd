@@ -1,0 +1,44 @@
+---
+output: github_document
+---
+
+
+```{r, include = FALSE}
+
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  comment = "#>",
+  fig.path = "man/figures/README-", 
+  out.width = "100%"
+  )
+
+```
+
+# openlibraryR <img src = "man/figures/openlibraryR_sm.png" width = "180px" align = "right" />
+
+openlibraryR is an R package that provides a simple wrapper for the [Open Library API](https://openlibrary.org/dev/docs/api/books).
+
+[Open Library](https://openlibrary.org) is a digital repository of publication data that aims to make "all of the published works of humankind available to everyone in the world" that is part of archive.org. 
+
+Hex sticker icon by [mangsaabguru](https://www.flaticon.com/authors/mangsaabguru).
+
+## Installation  
+
+You can install the development version of openlibraryR from Github:  
+
+```{r, eval = FALSE}
+devtools::install_github("walkerkq/openlibraryR")
+```
+
+## Getting Started  
+
+You do not need an account or key to access the Open Library API. There is only method provided which returns book details from an ISBN (International Standard Book Number).   
+
+```{r}
+my_book <- openlibraryR::get_books(book_id = '0486282112')
+
+str(my_book)
+```
+
+
+
